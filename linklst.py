@@ -7,7 +7,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    # insert at begining 
+# insert at begining 
 
     def insert_at_begining(self, data):
         node = Node(data, self.head)
@@ -102,6 +102,14 @@ class LinkedList:
             itr = itr.next
             count += 1
 
+    def insert_after_value(self, data_after, data_to_insert):
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                node = Node(data_to_insert, itr.next)
+                itr.next = node
+            itr = itr.next
+
 li = LinkedList()
 # li.insert_at_begining(10)
 # li.insert_at_begining(2)
@@ -114,3 +122,5 @@ li.remove_idx(2)
 li.insert_at(0, "rafi")
 li.print()
 print("Length : ", li.get_length())
+li.insert_after_value("rafi", "shakib")
+li.print()

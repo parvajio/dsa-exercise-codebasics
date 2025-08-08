@@ -7,10 +7,13 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    # insert at begining 
+
     def insert_at_begining(self, data):
         node = Node(data, self.head)
         self.head = node
 
+# print 
     def print(self):
         if self.head is None:
             print("Your linked list is empty.")
@@ -23,6 +26,7 @@ class LinkedList:
             itr = itr.next
         print(listr)
     
+# insert at the end 
     def inser_at_end(self, data):
         if self.head is None:
             self.head = Node(data, None)
@@ -34,6 +38,7 @@ class LinkedList:
 
         itr.next = Node(data, None)
 
+# insert multiple values 
     def insert_values(self, dataList):
         # self.head = None
         # for data in dataList:
@@ -50,6 +55,7 @@ class LinkedList:
         for data in dataList:
             self.inser_at_end(data)
 
+# get length 
     def get_length(self):
         count = 0
         itr = self.head
@@ -57,7 +63,8 @@ class LinkedList:
             count += 1
             itr = itr.next
         return count
-    
+
+# remove index     
     def remove_idx(self, idx):
         if idx < 0 or idx >= self.get_length():
             raise Exception("Invalid Index")
@@ -75,6 +82,25 @@ class LinkedList:
             itr = itr.next
             count_idx += 1
 
+# insert at index 
+    def insert_at(self, idx, data):
+        if idx < 0 or idx >= self.get_length():
+            raise Exception("Invalid index")
+        
+        if idx == 0:
+            node = Node(data, self.head)
+            self.head = node
+            return
+        
+        count = 0
+        itr = self.head
+        while itr:
+            if count == idx - 1:
+                itrN = itr.next
+                itr.next = Node(data, itrN)
+                return
+            itr = itr.next
+            count += 1
 
 li = LinkedList()
 # li.insert_at_begining(10)
@@ -85,5 +111,6 @@ li = LinkedList()
 # li.inser_at_end(2222)
 li.insert_values(["parvaj","niloy", "rajib", "rajon"])
 li.remove_idx(2)
+li.insert_at(0, "rafi")
 li.print()
 print("Length : ", li.get_length())

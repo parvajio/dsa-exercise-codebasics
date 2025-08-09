@@ -22,6 +22,22 @@ print(max(tempArr[0:10]))
 print(temDic["Jan 4"])
 print(temDic["Jan 9"])
 
+# poem 
+wordCount = {}
+
+with open("poem.txt", 'r') as file:
+    for line in file:
+        tokens = line.split(" ")
+
+        for token in tokens:
+            token = token.replace("\n", "")
+            if token in wordCount:
+                wordCount[token] += 1
+            else:
+                wordCount[token] = 1
+        
+print(wordCount)
+
 class HashTable: 
     def __init__(self):
         self.Max = 10

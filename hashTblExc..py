@@ -14,3 +14,39 @@ avg = sum(tempArr[0:7])/len(tempArr[0:7])
 print(avg)
 
 print(max(tempArr[0:10]))
+
+class HashTable: 
+    def __init__(self):
+        self.Max = 10
+        self.arr = [[] for i in range(self.Max)]
+
+    def getHash(self, key):
+        h = 0
+        for char in key:
+            h += ord(char)
+        return h % 10 
+    
+    def __setitem__(self, key, val):
+        h = self.getHash(key)
+
+        found = False
+        for idx, elm in enumerate(self.arr[h]):
+            if elm[0] == key:
+                self.arr[h][idx] = (key, val)
+                found = True
+
+        if not found:
+            self.arr[h].append((key, val))
+
+ht = HashTable()
+ht["Jan 1"] = 27
+ht["Jan 2"] = 31
+ht["Jan 3"] = 23
+ht["Jan 4"] = 34
+ht["Jan 5"] = 37
+ht["Jan 6"] = 38
+ht["Jan 7"] = 29
+ht["Jan 8"] = 30
+ht["Jan 9"] = 35
+ht["Jan 10"] = 30
+print(ht.arr)

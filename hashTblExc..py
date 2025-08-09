@@ -1,12 +1,16 @@
 import csv
 
+# avg and max 
+
 tempArr = []
+temDic = {}
 with open("nyc_weather.csv", 'r') as file:
     content = csv.reader(file)
     for line in content:
         try:
             temperature = int(line[1])
             tempArr.append(temperature)
+            temDic[line[0]] = line[1]
         except:
             print("invalid")
 
@@ -14,6 +18,9 @@ avg = sum(tempArr[0:7])/len(tempArr[0:7])
 print(avg)
 
 print(max(tempArr[0:10]))
+
+print(temDic["Jan 4"])
+print(temDic["Jan 9"])
 
 class HashTable: 
     def __init__(self):
